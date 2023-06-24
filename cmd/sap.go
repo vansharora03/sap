@@ -35,11 +35,14 @@ func main() {
 
     } else if args[0] == "create" {
         // create
+        // Check if name was given
+        if len(args) < 2 {
+            fmt.Println("Please give a name for the script i.e sap create foo")
+            return
+        }
 
-        // Do not do anything if sap.json does not exist
-        if _, err := os.Stat("sap.json"); os.IsNotExist(err) {
-            fmt.Println("sap.json file not detected")
-            fmt.Println("Please initialize a sap.json file with sap init")
+        if err := sap_create(args[1]); err != nil {
+            fmt.Println(err)
         }
 
     }
