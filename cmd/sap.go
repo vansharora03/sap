@@ -5,6 +5,10 @@ import (
 	"os"
 )
 
+var missingScriptNameMsg = "Please give a name for the script i.e sap create foo"
+var missingCommandNameMsg = "Please give a name for the command i.e sap add ___ -command=<command>"
+
+
 func main() {
     args := os.Args[1:]
 
@@ -26,6 +30,8 @@ func main() {
         fmt.Println("    init    :    start sap in a new project")
         fmt.Println("    create <name>    :    create a new sap script")
         fmt.Println("")
+        fmt.Println("    add <script name> -command=<command>    :    add command to script")
+        fmt.Println("")
         fmt.Println("    list    :    list all current scripts with their commands")
         fmt.Println("")
 
@@ -39,7 +45,7 @@ func main() {
         // create
         // Check if name was given
         if len(args) < 2 {
-            fmt.Println("Please give a name for the script i.e sap create foo")
+            fmt.Println(missingScriptNameMsg)
             return
         }
 
@@ -52,6 +58,15 @@ func main() {
         if err := sap_list(); err != nil {
             fmt.Println(err)
         }
+    } else if args[0] == "add" {
+        //add
+        if len(args) < 3 {
+            fmt.Println(missingScriptNameMsg)
+            fmt.Println(missingCommandNameMsg)
+            return
+        }
+
+        fmt.Print(args[2])
     }
 
 
