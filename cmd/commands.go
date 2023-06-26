@@ -92,3 +92,36 @@ func sap_create(name string) error {
 
     return nil
 }
+
+
+// sap_list lists out all the scripts with their current commands in json format
+func sap_list() error {
+    if !fileExists("sap.json") {
+        fmt.Println("No sap.json detected. Please execute sap init")
+        return nil
+    }
+
+    contents, err := os.ReadFile("sap.json")
+    if err != nil {
+        return err
+    }
+
+    fmt.Println(string(contents))
+
+    return nil
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

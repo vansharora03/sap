@@ -26,6 +26,8 @@ func main() {
         fmt.Println("    init    :    start sap in a new project")
         fmt.Println("    create <name>    :    create a new sap script")
         fmt.Println("")
+        fmt.Println("    list    :    list all current scripts with their commands")
+        fmt.Println("")
 
     } else if args[0] == "init" {
         // init
@@ -45,6 +47,11 @@ func main() {
             fmt.Println(err)
         }
 
+    } else if args[0] == "list" {
+        //list
+        if err := sap_list(); err != nil {
+            fmt.Println(err)
+        }
     }
 
 
